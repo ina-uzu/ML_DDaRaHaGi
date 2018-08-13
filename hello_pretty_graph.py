@@ -8,7 +8,6 @@ var2 = np.zeros(array_len)
 var3 = np.zeros(array_len)
 var4 = np.zeros(array_len)
 
-
 def function_1(input):
     # Function 1
     for i in range(array_len):

@@ -1,6 +1,6 @@
 import pandas as pd
 
-#SVM 룰루
+#SVM 룰루!
 #data processing
 bankdata = pd.read_csv("D:\Program\Pycharm\Project/bill_authentication.csv")
 bankdata.shape
