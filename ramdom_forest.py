@@ -1,4 +1,4 @@
-# -*- coding: ms949 -*-
+
 import numpy
 from sklearn.cross_validation import train_test_split
 from sklearn import ensemble
@@ -24,29 +24,25 @@ for line in data:
         floatRow = [float(num) for num in row]
         xList.append(floatRow)
 
-# print(xList);print(labels)
-
 nrows = len(xList)
 ncols = len(xList[0])
 
 X = numpy.array(xList)
 Y = numpy.array(labels)
 wineNames = numpy.array(names)
-# print(X);print(Y);print(wineNames)
 
-xTrain, xTest, yTrain, yTest = train_test_split(X, Y, test_size=0.3, random_state=531)
-# print(xTrain);print(xTest);print(yTrain);print(yTest)
+xTrain, xTest, yTrain, yTest = train_test_split(X, Y, test_size=0.3, random_state=550)
 
 mseOos = []
 nTreeList = range(50, 500, 10)
 for iTrees in nTreeList:
     depth = None
-    maxFeat = 4  # 조정해볼 것
+    maxFeat = 5
     wineRFModel = ensemble.RandomForestRegressor(n_estimators=iTrees,
                                                  max_depth=depth, max_features=maxFeat,
                                                  oob_score=False, random_state=531)
     wineRFModel.fit(xTrain, yTrain)
-    # 데이터 세트에 대한 MSE 누적
+
     prediction = wineRFModel.predict(xTest)
     mseOos.append(mean_squared_error(yTest, prediction))
 
@@ -56,7 +52,6 @@ print(mseOos[-1])
 plot.plot(nTreeList, mseOos)
 plot.xlabel('Number of Trees in Ensemble')
 plot.ylabel('Mean Squared Error')
-# plot.ylim([0.0, 1.1*max(mseOob)])
 plot.show()
 
 featureImportance = wineRFModel.feature_importances_

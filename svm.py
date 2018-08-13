@@ -1,7 +1,6 @@
 import pandas as pd
-import numpy as np
-import matplotlib.pylab as plt
 
+#SVM 룰루
 #data processing
 bankdata = pd.read_csv("D:\Program\Pycharm\Project/bill_authentication.csv")
 bankdata.shape
